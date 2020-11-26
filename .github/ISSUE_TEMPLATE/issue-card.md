@@ -8,7 +8,7 @@ assignees: ''
 ---
 
 ### ISSUE
-- Type: `bug`, `feature`, `delete`
+- Type: `feat`, `add`, `test`, `delete`, `update`
 - Detail: fix actions from client redux
 
 ### TODO
