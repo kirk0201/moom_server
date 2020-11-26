@@ -1,7 +1,7 @@
 ---
 name: Issue Card
-about: Suggest an idea for this project
-title: ''
+about: 이슈 카드 생성시 사용되는 템플릿입니다.
+title: 기능약자/할일을 적어주세요.
 labels: ''
 assignees: ''
 
