@@ -11,6 +11,13 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      body_fat.belongsTo(models.user, {
+        foreignKey: { 
+          name: 'user_id', 
+          allowNull: false 
+        },
+          onDelete: 'CASCADE',
+      })
     }
   };
   body_fat.init({
