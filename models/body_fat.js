@@ -27,6 +27,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'body_fat',
+    freezeTableName: true,
   });
   return body_fat;
 };
