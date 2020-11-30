@@ -8,3 +8,5 @@ router.post('/login',userController.login.post);
 router.get('/logout',userController.logout.get);
 router.get('/edit',userController.edit.get);
 router.put('/edit',userController.edit.put);
+
+module.exports = router
