@@ -9,40 +9,40 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       weight: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       body_fat: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       chest: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       hip: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       waist: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       shoulder: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       thigh: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       custom1: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       custom2: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       custom3: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       custom4: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       custom5: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       user_id: {
         type: Sequelize.INTEGER,

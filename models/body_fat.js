@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   body_fat.init({
-    value: DataTypes.INTEGER,
+    value: DataTypes.FLOAT,
     user_id: DataTypes.INTEGER,
     scheldule: DataTypes.DATEONLY
   }, {
