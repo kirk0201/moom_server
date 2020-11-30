@@ -9,7 +9,7 @@ module.exports = {
         type: Sequelize.INTEGER,
       },
       value: {
-        type: Sequelize.INTEGER,
+        type: Sequelize.FLOAT,
       },
       user_id: {
         type: Sequelize.INTEGER,

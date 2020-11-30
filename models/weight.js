@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   weight.init({
-    value: DataTypes.INTEGER,
+    value: DataTypes.FLOAT,
     user_id: DataTypes.INTEGER,
     scheldule: DataTypes.DATEONLY
   }, {

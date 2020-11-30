@@ -21,7 +21,7 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   thigh.init({
-    value: DataTypes.INTEGER,
+    value: DataTypes.FLOAT,
     user_id: DataTypes.INTEGER,
     scheldule: DataTypes.DATEONLY
   }, {

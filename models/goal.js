@@ -20,18 +20,18 @@ module.exports = (sequelize, DataTypes) => {
     }
   };
   goal.init({
-    weight: DataTypes.INTEGER,
-    body_fat: DataTypes.INTEGER,
-    chest: DataTypes.INTEGER,
-    hip: DataTypes.INTEGER,
-    waist: DataTypes.INTEGER,
-    shoulder: DataTypes.INTEGER,
-    thigh: DataTypes.INTEGER,
-    custom1: DataTypes.INTEGER,
-    custom2: DataTypes.INTEGER,
-    custom3: DataTypes.INTEGER,
-    custom4: DataTypes.INTEGER,
-    custom5: DataTypes.INTEGER,
+    weight: DataTypes.FLOAT,
+    body_fat: DataTypes.FLOAT,
+    chest: DataTypes.FLOAT,
+    hip: DataTypes.FLOAT,
+    waist: DataTypes.FLOAT,
+    shoulder: DataTypes.FLOAT,
+    thigh: DataTypes.FLOAT,
+    custom1: DataTypes.FLOAT,
+    custom2: DataTypes.FLOAT,
+    custom3: DataTypes.FLOAT,
+    custom4: DataTypes.FLOAT,
+    custom5: DataTypes.FLOAT,
     user_id: DataTypes.INTEGER
   }, {
     sequelize,
