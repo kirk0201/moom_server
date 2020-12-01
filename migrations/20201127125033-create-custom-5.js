@@ -20,7 +20,7 @@ module.exports = {
           key: "id",
         },
       },
-      scheldule: {
+      schedule: {
         type: Sequelize.DATEONLY,
       },
       createdAt: {

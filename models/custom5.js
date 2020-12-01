@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
   custom5.init({
     value: DataTypes.FLOAT,
     user_id: DataTypes.INTEGER,
-    scheldule: DataTypes.DATEONLY
+    schedule: DataTypes.DATEONLY
   }, {
     sequelize,
     modelName: 'custom5',
