@@ -43,7 +43,7 @@ module.exports = {
           attributes: ["value"],
         });
         for (let i in result) {
-          result[i] = result[i][result[i].length-1].value;
+          result[i] = result[i][result[i].length - 1].value;
         }
         res.status(200).json(result);
       } catch (e) {
