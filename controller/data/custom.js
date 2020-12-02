@@ -20,15 +20,49 @@ module.exports = {
         });
         let result = {};
         for (let i in userdata.dataValues) {
-          if (userdata.dataValues[i] !== undefined) {
-            result[i] = { name: i };
-            result[i].value = await [i].findAll({
-              where: {
-                user_id: sess.userid,
-              },
-            });
-            result[i].value = result[i].value.pop();
+          if (userdata.dataValues[i] !== null) {
+            result[i] = { name: userdata.dataValues[i] };
           }
+        }
+        if (result.custom1 !== undefined) {
+          result.custom1.value = await custom1.findAll({
+            where: {
+              user_id: sess.userid,
+            },
+          });
+          result.custom1.value = result.custom1.value.pop().value;
+        }
+        if (result.custom2 !== undefined) {
+          result.custom2.value = await custom2.findAll({
+            where: {
+              user_id: sess.userid,
+            },
+          });
+          result.custom2.value = result.custom2.value.pop().value;
+        }
+        if (result.custom3 !== undefined) {
+          result.custom3.value = await custom3.findAll({
+            where: {
+              user_id: sess.userid,
+            },
+          });
+          result.custom3.value = result.custom3.value.pop().value;
+        }
+        if (result.custom4 !== undefined) {
+          result.custom4.value = await custom4.findAll({
+            where: {
+              user_id: sess.userid,
+            },
+          });
+          result.custom4.value = result.custom4.value.pop().value;
+        }
+        if (result.custom5 !== undefined) {
+          result.custom5.value = await custom5.findAll({
+            where: {
+              user_id: sess.userid,
+            },
+          });
+          result.custom5.value = result.custom5.value.pop().value;
         }
         res.status(200).json(result);
       } catch (e) {
