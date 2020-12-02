@@ -73,7 +73,76 @@ module.exports = {
       res.status(400).send("잘못된 접근입니다");
     }
   },
-  post: (req, res) => {},
-  put: (req, res) => {},
-  delete: (req, res) => {},
+  post: async (req, res) => {
+    const sess = req.session;
+    let { customNumber, value } = req.body;
+    customNumber = Object.keys(req.body)[0];
+    if (sess.userid) {
+      try {
+        const result = await user.findOne({
+          where: { id: sess.userid },
+        });
+        if (result.dataValues[customNumber] === null) {
+          const result1 = await user.update(
+            { [customNumber]: value },
+            { where: { id: sess.userid } }
+          );
+          if (result1) {
+            res.status(200).send("생성에 성공했습니다");
+          }
+        } else {
+          res.status(403).send("해당 커스텀창을 사용 중입니다");
+        }
+      } catch (e) {
+        console.log(e);
+        res.status(500).send("생성에 실패했습니다");
+      }
+    } else {
+      res.status(400).send("잘못된 접근입니다");
+    }
+  },
+  put: async (req, res) => {
+    const sess = req.session;
+    let { customNumber, value } = req.body;
+    customNumber = Object.keys(req.body)[0];
+
+    if (sess.userid) {
+      try {
+        const result = await user.update(
+          { [customNumber]: value },
+          { where: { id: sess.userid } }
+        );
+        if (result) {
+          res.status(200).send("수정에 성공했습니다");
+        }
+      } catch (e) {
+        console.log(e);
+        res.status(500).send("수정에 실패했습니다");
+      }
+    } else {
+      res.status(400).send("잘못된 접근입니다");
+    }
+  },
+  delete: async (req, res) => {
+    const sess = req.session;
+    let { customNumber } = req.body;
+    customNumber = Object.keys(req.body)[0];
+
+    if (sess.userid) {
+      try {
+        const result = await user.update(
+          { [customNumber]: null },
+          { where: { id: sess.userid } }
+        );
+        if (result) {
+          res.status(200).send("삭제에 성공했습니다");
+        }
+      } catch (e) {
+        console.log(e);
+        res.status(500).send("삭제에 실패했습니다");
+      }
+    } else {
+      res.status(400).send("잘못된 접근입니다");
+    }
+  },
 };
