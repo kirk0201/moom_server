@@ -1,4 +1,5 @@
 const { user } = require("../../models");
+const crypto = require('crypto');
 
 module.exports = {
   get: (req, res) => {
@@ -25,12 +26,17 @@ module.exports = {
   put: (req, res) => {
     const { name, password, birth, promise, sex } = req.body;
     var sess = req.session;
+    const secret = "abcdefg";
+    const encryption = crypto
+      .createHmac("sha256", secret)
+      .update(password)
+      .digest("hex");
     if (sess.userid) {
       user
         .update(
           {
             name: name,
-            password: password,
+            password: encryption,
             birth: birth,
             promise: promise,
             sex: sex,

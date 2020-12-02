@@ -1,8 +1,14 @@
 const { user } = require("../../models");
+const crypto = require("crypto");
 
 module.exports = {
   post: (req, res) => {
     const { name, email, password, sex } = req.body;
+    const secret = "abcdefg";
+    const encryption = crypto
+      .createHmac("sha256", secret)
+      .update(password)
+      .digest("hex");
     user
       .findOrCreate({
         where: {
@@ -10,7 +16,7 @@ module.exports = {
         },
         defaults: {
           name: name,
-          password: password,
+          password: encryption,
           type: "nomal",
           sex: sex,
         },
