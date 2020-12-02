@@ -17,7 +17,6 @@ module.exports = {
         if (!created) {
           return res.status(409).send("해당 이메일은 이미 사용중입니다.");
         }
-        console.log("req.body: ", req.body);
         res.status(200).send("회원가입 성공");
       })
       .catch((error) => {
