@@ -1,11 +1,12 @@
 const { user } = require("../../models");
 const crypto = require("crypto");
+require("dotenv").config();
 
 module.exports = {
   post: (req, res) => {
     const { email, password } = req.body;
     var sess = req.session;
-    const secret = "abcdefg";
+    const secret = process.env.PJ_SECRET;
     const encryption = crypto
       .createHmac("sha256", secret)
       .update(password)
