@@ -1,8 +1,15 @@
 const { user } = require("../../models");
+const crypto = require("crypto");
+require("dotenv").config();
 
 module.exports = {
   post: (req, res) => {
     const { name, email, password, sex } = req.body;
+    const secret = process.env.PJ_SECRET;
+    const encryption = crypto
+      .createHmac("sha256", secret)
+      .update(password)
+      .digest("hex");
     user
       .findOrCreate({
         where: {
@@ -10,7 +17,7 @@ module.exports = {
         },
         defaults: {
           name: name,
-          password: password,
+          password: encryption,
           type: "nomal",
           sex: sex,
         },
