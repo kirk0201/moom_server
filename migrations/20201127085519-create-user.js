@@ -20,6 +20,9 @@ module.exports = {
       birth: {
         type: Sequelize.DATEONLY,
       },
+      sex: {
+        type: Sequelize.STRING,
+      },
       type: {
         type: Sequelize.STRING,
       },

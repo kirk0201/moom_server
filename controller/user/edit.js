@@ -23,7 +23,7 @@ module.exports = {
     }
   },
   put: (req, res) => {
-    const { name, password, birth, promise } = req.body;
+    const { name, password, birth, promise, sex } = req.body;
     var sess = req.session;
     if (sess.userid) {
       user
@@ -33,6 +33,7 @@ module.exports = {
             password: password,
             birth: birth,
             promise: promise,
+            sex: sex,
           },
           {
             where: {
