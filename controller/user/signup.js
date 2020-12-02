@@ -2,7 +2,7 @@ const { user } = require("../../models");
 
 module.exports = {
   post: (req, res) => {
-    const { name, email, password } = req.body;
+    const { name, email, password, sex } = req.body;
     user
       .findOrCreate({
         where: {
@@ -11,6 +11,8 @@ module.exports = {
         defaults: {
           name: name,
           password: password,
+          type: "nomal",
+          sex: sex,
         },
       })
       .then(async ([user, created]) => {
