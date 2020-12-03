@@ -7,6 +7,14 @@ const {
   custom5,
 } = require("../../models");
 
+const model = {
+  custom1,
+  custom2,
+  custom3,
+  custom4,
+  custom5,
+};
+
 module.exports = {
   get: async (req, res) => {
     const sess = req.session;
@@ -75,16 +83,15 @@ module.exports = {
   },
   post: async (req, res) => {
     const sess = req.session;
-    let { customNumber, value } = req.body;
-    customNumber = Object.keys(req.body)[0];
+    const { body_part, value } = req.body;
     if (sess.userid) {
       try {
         const result = await user.findOne({
           where: { id: sess.userid },
         });
-        if (result.dataValues[customNumber] === null) {
+        if (result.dataValues[body_part] === null) {
           const result1 = await user.update(
-            { [customNumber]: value },
+            { [body_part]: value },
             { where: { id: sess.userid } }
           );
           if (result1) {
@@ -103,13 +110,12 @@ module.exports = {
   },
   put: async (req, res) => {
     const sess = req.session;
-    let { customNumber, value } = req.body;
-    customNumber = Object.keys(req.body)[0];
+    const { body_part, value } = req.body;
 
     if (sess.userid) {
       try {
         const result = await user.update(
-          { [customNumber]: value },
+          { [body_part]: value },
           { where: { id: sess.userid } }
         );
         if (result) {
@@ -125,17 +131,23 @@ module.exports = {
   },
   delete: async (req, res) => {
     const sess = req.session;
-    let { customNumber } = req.body;
-    customNumber = Object.keys(req.body)[0];
+    const { body_part } = req.body;
 
     if (sess.userid) {
       try {
         const result = await user.update(
-          { [customNumber]: null },
+          { [body_part]: null },
           { where: { id: sess.userid } }
         );
         if (result) {
           res.status(200).send("삭제에 성공했습니다");
+        }
+
+        const result2 = await model[body_part].destroy({
+          where: { user_id: sess.userid },
+        });
+        if (result2) {
+          console.log("body_port 데이터 초기화완료");
         }
       } catch (e) {
         console.log(e);

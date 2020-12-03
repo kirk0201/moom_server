@@ -4,13 +4,14 @@ const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const userRouter = require("./routes/userRouter");
 const dataRouter = require("./routes/dataRouter");
+require("dotenv").config();
 
 const app = express();
 const port = 4000;
 
 app.use(
   session({
-    secret: "@codestates",
+    secret: process.env.PJ_SECRET,
     resave: false,
     saveUninitialized: true,
   })
