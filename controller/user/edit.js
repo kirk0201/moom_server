@@ -27,20 +27,20 @@ module.exports = {
   put: async (req, res) => {
     const { name, password, birth, promise, sex } = req.body;
     var sess = req.session;
-    let encryption;
-    const secret = process.env.PJ_SECRET;
-    if (password) {
-      encryption = crypto
-        .createHmac("sha256", secret)
-        .update(password)
-        .digest("hex");
-    }
     if (sess.userid) {
       let userdata = await user.findOne({
         where: {
           id: sess.userid,
         },
       });
+      const secret = process.env.PJ_SECRET;
+      let encryption;
+      if (password) {
+        encryption = crypto
+          .createHmac("sha256", secret)
+          .update(password)
+          .digest("hex");
+      }
       user
         .update(
           {
