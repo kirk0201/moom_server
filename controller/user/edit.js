@@ -1,5 +1,5 @@
 const { user } = require("../../models");
-const crypto = require('crypto');
+const crypto = require("crypto");
 require("dotenv").config();
 
 module.exports = {
@@ -24,7 +24,7 @@ module.exports = {
       res.status(404).send("세션이 없습니다");
     }
   },
-  put: (req, res) => {
+  put: async (req, res) => {
     const { name, password, birth, promise, sex } = req.body;
     var sess = req.session;
     const secret = process.env.PJ_SECRET;
@@ -33,14 +33,19 @@ module.exports = {
       .update(password)
       .digest("hex");
     if (sess.userid) {
+      let userdata = await user.findOne({
+        where: {
+          id: sess.userid,
+        },
+      });
       user
         .update(
           {
-            name: name,
-            password: encryption,
-            birth: birth,
-            promise: promise,
-            sex: sex,
+            name: name || userdata.dataValues.name,
+            password: encryption || user.dataValues.password,
+            birth: birth || user.dataValues.birth,
+            promise: promise || user.dataValues.promise,
+            sex: sex || user.dataValues.sex,
           },
           {
             where: {
