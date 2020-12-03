@@ -27,11 +27,14 @@ module.exports = {
   put: async (req, res) => {
     const { name, password, birth, promise, sex } = req.body;
     var sess = req.session;
+    let encryption;
     const secret = process.env.PJ_SECRET;
-    const encryption = crypto
-      .createHmac("sha256", secret)
-      .update(password)
-      .digest("hex");
+    if (password) {
+      encryption = crypto
+        .createHmac("sha256", secret)
+        .update(password)
+        .digest("hex");
+    }
     if (sess.userid) {
       let userdata = await user.findOne({
         where: {
@@ -42,10 +45,10 @@ module.exports = {
         .update(
           {
             name: name || userdata.dataValues.name,
-            password: encryption || user.dataValues.password,
-            birth: birth || user.dataValues.birth,
-            promise: promise || user.dataValues.promise,
-            sex: sex || user.dataValues.sex,
+            password: encryption || userdata.dataValues.password,
+            birth: birth || userdata.dataValues.birth,
+            promise: promise || userdata.dataValues.promise,
+            sex: sex || userdata.dataValues.sex,
           },
           {
             where: {
