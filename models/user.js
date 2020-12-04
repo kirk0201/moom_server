@@ -1,5 +1,9 @@
 "use strict";
 const { Model } = require("sequelize");
+const crypto = require("crypto");
+require("dotenv").config();
+const secret = process.env.PJ_SECRET;
+
 module.exports = (sequelize, DataTypes) => {
   class user extends Model {
     /**
@@ -25,6 +29,19 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       modelName: "user",
+      // 비밀번호를 저장하기 /전 해쉬함수로 복호화 불가한 문자열로 변경 후 저장
+      hooks: {
+        beforeCreate: (data, option) => {
+          const shasum = crypto.createHmac("sha512", secret);
+          shasum.update(data.password);
+          data.password = shasum.digest("hex");
+        },
+        beforeUpdate: (data, option) => {
+          const shasum = crypto.createHmac("sha512", secret);
+          shasum.update(data.password);
+          data.password = shasum.digest("hex");
+        },
+      },
     }
   );
   return user;

@@ -1,6 +1,4 @@
 const { user } = require("../../models");
-const crypto = require("crypto");
-require("dotenv").config();
 
 module.exports = {
   get: (req, res) => {
@@ -33,19 +31,11 @@ module.exports = {
           id: sess.userid,
         },
       });
-      const secret = process.env.PJ_SECRET;
-      let encryption;
-      if (password) {
-        encryption = crypto
-          .createHmac("sha256", secret)
-          .update(password)
-          .digest("hex");
-      }
       user
         .update(
           {
             name: name || userdata.dataValues.name,
-            password: encryption || userdata.dataValues.password,
+            password: password || userdata.dataValues.password,
             birth: birth || userdata.dataValues.birth,
             promise: promise || userdata.dataValues.promise,
             sex: sex || userdata.dataValues.sex,
