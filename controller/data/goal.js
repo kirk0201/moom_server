@@ -1,19 +1,19 @@
-const { user, goal } = require("../../models");
+const { body_part } = require("../../models");
 
 module.exports = {
   get: async (req, res) => {
     const sess = req.session;
-    const { body_part } = req.body;
+    const { part_name } = req.body;
     if (sess.userid) {
       try {
-        const result = await goal.findOne({
+        const result = await body_part.findOne({
           where: {
             user_id: sess.userid,
+            body_part: part_name,
           },
-          attributes: [body_part],
         });
         if (result) {
-          res.status(200).json(result[body_part]);
+          res.status(200).json(result.goal);
         } else {
           res.status(400).send("잘못된 접근입니다");
         }
@@ -27,16 +27,17 @@ module.exports = {
   },
   post: async (req, res) => {
     const sess = req.session;
-    const { body_part, value } = req.body;
+    const { part_name, value } = req.body;
     if (sess.userid) {
       try {
-        const result = await goal.update(
+        const result = await body_part.update(
           {
-            [body_part]: value,
+            goal: value,
           },
           {
             where: {
               user_id: sess.userid,
+              body_part: part_name,
             },
           }
         );
@@ -55,16 +56,17 @@ module.exports = {
   },
   put: async (req, res) => {
     const sess = req.session;
-    const { body_part, value } = req.body;
+    const { part_name, value } = req.body;
     if (sess.userid) {
       try {
-        const result = await goal.update(
+        const result = await body_part.update(
           {
-            [body_part]: value,
+            goal: value,
           },
           {
             where: {
               user_id: sess.userid,
+              body_part: part_name,
             },
           }
         );
@@ -83,19 +85,14 @@ module.exports = {
   },
   delete: async (req, res) => {
     const sess = req.session;
-    const { body_part } = req.body;
+    const { part_name } = req.body;
     if (sess.userid) {
       try {
-        const result = await goal.update(
-          {
-            [body_part]: null,
+        const result = await body_part.destroy({
+          where: {
+            body_part: part_name,
           },
-          {
-            where: {
-              user_id: sess.userid,
-            },
-          }
-        );
+        });
         if (result) {
           res.status(200).send("목표 삭제에 성공했습니다");
         } else {
