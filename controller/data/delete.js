@@ -1,42 +1,12 @@
-const {
-  user,
-  shoulder,
-  chest,
-  waist,
-  hip,
-  thigh,
-  weight,
-  body_fat,
-  custom1,
-  custom2,
-  custom3,
-  custom4,
-  custom5,
-} = require("../../models");
-const model = {
-  user,
-  shoulder,
-  chest,
-  waist,
-  hip,
-  thigh,
-  weight,
-  body_fat,
-  custom1,
-  custom2,
-  custom3,
-  custom4,
-  custom5,
-};
+const { body_data } = require("../../models");
 
 module.exports = {
   delete: async (req, res) => {
     const sess = req.session;
-    const { body_part } = req.body;
     const id = req.params.id;
     if (sess.userid) {
       try {
-        const result = await model[body_part].destroy({
+        const result = await body_data.destroy({
           where: {
             id: id,
           },

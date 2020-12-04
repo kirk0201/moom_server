@@ -1,42 +1,13 @@
-const {
-  user,
-  shoulder,
-  chest,
-  waist,
-  hip,
-  thigh,
-  weight,
-  body_fat,
-  custom1,
-  custom2,
-  custom3,
-  custom4,
-  custom5,
-} = require("../../models");
-const model = {
-  user,
-  shoulder,
-  chest,
-  waist,
-  hip,
-  thigh,
-  weight,
-  body_fat,
-  custom1,
-  custom2,
-  custom3,
-  custom4,
-  custom5,
-};
+const { body_data } = require("../../models");
 
 module.exports = {
   put: async (req, res) => {
     const sess = req.session;
-    const { body_part, value } = req.body;
+    const { value } = req.body;
     const id = req.params.id;
     if (sess.userid) {
       try {
-        const result = await model[body_part].update(
+        const result = await body_data.update(
           {
             value: value,
           },

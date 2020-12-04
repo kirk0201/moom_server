@@ -11,7 +11,7 @@ module.exports = {
           email: "applepen@gmail.com",
           name: "John Doe",
           password:
-            "3e03ab6d0588bf2eff59dcf1791c8ec4c432b259f95cf6475d15d2836983c8ab",
+            "04608017ca5879cf400d20c04a6cdc9e75ee54d629ad0bd6bcb86a423223146f35f51715bb40983f742125330cd0aa77fbf357d3022ab49eeda02282a24a3122",
           birth: "20000314",
           sex: "male",
           promise: "전지현이 될꺼야",

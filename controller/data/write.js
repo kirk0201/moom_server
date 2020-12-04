@@ -1,45 +1,23 @@
-const {
-  user,
-  shoulder,
-  chest,
-  waist,
-  hip,
-  thigh,
-  weight,
-  body_fat,
-  custom1,
-  custom2,
-  custom3,
-  custom4,
-  custom5,
-} = require("../../models");
-const model = {
-  user,
-  shoulder,
-  chest,
-  waist,
-  hip,
-  thigh,
-  weight,
-  body_fat,
-  custom1,
-  custom2,
-  custom3,
-  custom4,
-  custom5,
-};
+const { body_part, body_data } = require("../../models");
 
 module.exports = {
   post: async (req, res) => {
     const sess = req.session;
-    const { body_part, value } = req.body;
-    const id = req.params.id;
+    const { part_name, value } = req.body;
     if (sess.userid) {
       try {
-        const result = await model[body_part].create({
+        const body_part_id = await body_part.findOne({
+          where: {
+            user_id: sess.userid,
+            body_part: part_name,
+          },
+        });
+
+        const result = await body_data.create({
           schedule: new Date(),
           value: value,
           user_id: sess.userid,
+          body_part_id: body_part_id.id,
         });
         if (result) {
           res.status(200).send("생성 성공");
