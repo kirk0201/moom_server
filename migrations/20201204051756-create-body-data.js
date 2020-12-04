@@ -1,7 +1,7 @@
 "use strict";
 module.exports = {
   up: async (queryInterface, Sequelize) => {
-    await queryInterface.createTable("custom2", {
+    await queryInterface.createTable("body_data", {
       id: {
         allowNull: false,
         autoIncrement: true,
@@ -10,6 +10,9 @@ module.exports = {
       },
       value: {
         type: Sequelize.FLOAT,
+      },
+      schedule: {
+        type: Sequelize.DATEONLY,
       },
       user_id: {
         type: Sequelize.INTEGER,
@@ -20,8 +23,14 @@ module.exports = {
           key: "id",
         },
       },
-      schedule: {
-        type: Sequelize.DATEONLY,
+      body_part_id: {
+        type: Sequelize.INTEGER,
+        allowNull: false,
+        onDelete: "CASCADE",
+        references: {
+          model: "body_part",
+          key: "id",
+        },
       },
       createdAt: {
         allowNull: false,
@@ -34,6 +43,6 @@ module.exports = {
     });
   },
   down: async (queryInterface, Sequelize) => {
-    await queryInterface.dropTable("custom2");
+    await queryInterface.dropTable("body_data");
   },
 };
