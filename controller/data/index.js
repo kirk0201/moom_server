@@ -6,4 +6,5 @@ module.exports = {
   edit: require("./edit"),
   delete: require("./delete"),
   goal: require("./goal"),
+  gitoauth: require("./gitoauth"),
 };
