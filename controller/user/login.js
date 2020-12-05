@@ -19,11 +19,17 @@ module.exports = {
       .then((result) => {
         if (result === null) {
           res.status(404).send("존재하지 않는 사용자 입니다");
-        } else if (result.password !== password) {
-          res.status(400).send("비밀번호가 일치하지 않습니다");
+        } else {
+          if (result.type === "일반") {
+            if (result.password !== password) {
+              res.status(400).send("비밀번호가 일치하지 않습니다");
+            }
+            sess.userid = result.id;
+            res.status(200).send("로그인 성공");
+          } else {
+            res.status(400).send(`${result.type} 회원입니다`);
+          }
         }
-        sess.userid = result.id;
-        res.status(200).send("로그인 성공");
       })
       .catch((error) => {
         console.log(error);
