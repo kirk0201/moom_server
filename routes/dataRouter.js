@@ -14,5 +14,6 @@ router.post("/goal", dataController.goal.post);
 router.get("/goal", dataController.goal.get);
 router.put("/goal", dataController.goal.put);
 router.delete("/goal", dataController.goal.delete);
+router.get("/gitoauth", dataController.gitoauth.get);
 
 module.exports = router;
