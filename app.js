@@ -29,6 +29,7 @@ app.use(
 
 app.use("/data", dataRouter);
 app.use("/user", userRouter);
+app.use(express.static(path.join(__dirname, "../front/build")));
 app.get("/", (req, res) => {
   res.status(200).send("Connect server!!");
 });
