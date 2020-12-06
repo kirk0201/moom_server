@@ -1,7 +1,7 @@
 const axios = require("axios");
 const { user } = require("../../models");
 module.exports = {
-  get: async (req, res) => {
+  post: async (req, res) => {
     const sess = req.session;
     //url로 전달해준 토큰 받아오기
     const requestToken = req.query.code;
