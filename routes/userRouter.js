@@ -9,7 +9,7 @@ router.get('/logout',userController.logout.get);
 router.get('/edit',userController.edit.get);
 router.put('/edit',userController.edit.put);
 router.put('/edit',userController.edit.put);
-router.get('/googleoauth',userController.googleoauth.post);
-router.get("/gitoauth", userController.gitoauth.post);
+router.post('/googleoauth',userController.googleoauth.post);
+router.post("/gitoauth", userController.gitoauth.post);
 
 module.exports = router
