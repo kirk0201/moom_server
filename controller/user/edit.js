@@ -34,6 +34,8 @@ module.exports = {
       user
         .update(
           {
+            //or 연산자는 true를 반환하는것이 아니라 true에 해당하는 대상을 가져옴
+            // 따라서 name이 undefined일 경우 userdata.dataValues.name을 그대로 반환
             name: name || userdata.dataValues.name,
             password: password || userdata.dataValues.password,
             birth: birth || userdata.dataValues.birth,
@@ -54,6 +56,7 @@ module.exports = {
           }
         })
         .catch((error) => {
+          //promise에서 에러 발생시
           console.log(error);
           res.status(500).send("수정에 실패했습니다");
         });
