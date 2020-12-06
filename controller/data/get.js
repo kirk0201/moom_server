@@ -6,13 +6,16 @@ module.exports = {
     let { part_name } = req.body;
     if (sess.userid) {
       try {
+        //where에 해당하는 데이터 가져오기
         let result = await body_part.findOne({
           where: {
             user_id: sess.userid,
             body_part: part_name,
           },
+          //attributes에 해당하는 컬럼만 가져오기
           attributes: ["id"],
         });
+        //findAll은 결과를 배열 형태로 줌
         let body_datas = await body_data.findAll({
           where: {
             user_id: sess.userid,

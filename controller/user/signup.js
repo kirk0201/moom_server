@@ -16,6 +16,7 @@ module.exports = {
         },
       })
       .then(async ([user, created]) => {
+        //생성되면 created가 ture
         if (!created) {
           return res.status(409).send("해당 이메일은 이미 사용중입니다.");
         }

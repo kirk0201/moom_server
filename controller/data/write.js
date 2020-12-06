@@ -6,13 +6,14 @@ module.exports = {
     const { part_name, value } = req.body;
     if (sess.userid) {
       try {
+        //해당하는 body_part의 id 값 가져오기
         const body_part_id = await body_part.findOne({
           where: {
             user_id: sess.userid,
             body_part: part_name,
           },
         });
-
+        //body_part에 id, 세션의 유저아이디, 날짜, value에 해당하는 데이터 생성
         const result = await body_data.create({
           schedule: new Date(),
           value: value,
@@ -25,6 +26,7 @@ module.exports = {
           res.status(400).send("잘못된 접근입니다");
         }
       } catch (e) {
+        //try에서 에러 발생시
         console.log(e);
         res.status(500).send("생성에 실패하였습니다");
       }
