@@ -1,6 +1,6 @@
 const { user } = require("../../models");
 module.exports = {
-  get: async (req, res) => {
+  post: async (req, res) => {
     const sess = req.session;
     const { email, name, profile, id } = req.body;
     //where에 해당하는 친구 있으면 찾고 없으면 defaults로 만들고
