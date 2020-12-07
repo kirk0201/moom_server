@@ -10,6 +10,6 @@ router.get('/edit',userController.edit.get);
 router.put('/edit',userController.edit.put);
 router.put('/edit',userController.edit.put);
 router.post('/googleoauth',userController.googleoauth.post);
-router.post("/gitoauth", userController.gitoauth.post);
+router.get("/gitoauth", userController.gitoauth.get);
 
 module.exports = router
