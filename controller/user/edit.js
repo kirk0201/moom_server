@@ -23,7 +23,7 @@ module.exports = {
     }
   },
   put: async (req, res) => {
-    const { name, password, birth, promise, sex } = req.body;
+    const { name, password, birth, promise, sex, profile } = req.body;
     var sess = req.session;
     if (sess.userid) {
       let userdata = await user.findOne({
@@ -41,6 +41,7 @@ module.exports = {
             birth: birth || userdata.dataValues.birth,
             promise: promise || userdata.dataValues.promise,
             sex: sex || userdata.dataValues.sex,
+            profile: profile || userdata.dataValues.profile,
           },
           {
             where: {
