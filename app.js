@@ -1,7 +1,6 @@
 const express = require("express");
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
-const redis = require("redis");
 const session = require("express-session");
 const userRouter = require("./routes/userRouter");
 const dataRouter = require("./routes/dataRouter");
@@ -9,8 +8,6 @@ require("dotenv").config();
 const app = express();
 const port = 4000;
 
-let RedisStore = require("connect-redis")(session);
-let client = redis.createClient(6379, "localhost");
 
 app.use(cookieParser());
 app.use(express.json());
@@ -27,7 +24,6 @@ app.use(
 
 app.use(
   session({
-    store: new RedisStore({ client: client, ttl: 260 }),
     secret: process.env.PJ_SECRET,
     resave: true, // false
     saveUninitialized: true,
