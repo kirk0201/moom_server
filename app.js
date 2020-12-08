@@ -5,25 +5,33 @@ const session = require("express-session");
 const userRouter = require("./routes/userRouter");
 const dataRouter = require("./routes/dataRouter");
 require("dotenv").config();
-
 const app = express();
 const port = 4000;
+app.use(cookieParser());
+app.use(express.json());
+
+app.use(
+  cors({
+    // 허용하는 출처
+    origin: true,
+    //허용하는 요청 종류
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    credentials: true,
+  })
+);
 
 app.use(
   session({
     secret: process.env.PJ_SECRET,
-    resave: false,
+    resave: true, // false
     saveUninitialized: true,
-  })
-);
-
-app.use(cookieParser());
-app.use(express.json());
-app.use(
-  cors({
-    origin: true,
-    methods: ["GET", "POST", "PUT", "DELETE"],
-    credentials: true,
+    cookie: {
+      secure: true,
+      // 통신 포트를 한정 지어서? 자바스크립트를 통한 공격 방지
+      httpOnly: false,
+      maxAge: 60 * 60 * 24 * 1000,
+      sameSite: "none",
+    },
   })
 );
 
