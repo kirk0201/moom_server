@@ -7,6 +7,8 @@ const dataRouter = require("./routes/dataRouter");
 require("dotenv").config();
 const app = express();
 const port = 4000;
+
+
 app.use(cookieParser());
 app.use(express.json());
 
@@ -37,7 +39,8 @@ app.use(
 
 app.use("/data", dataRouter);
 app.use("/user", userRouter);
-app.use(express.static("build"));
+//서버에 접근했을때 빌드된 클라이언트 정적 파일을 전송해줌
+/* app.use(express.static("build")); */
 app.get("/", (req, res) => {
   res.status(200).send("Connect server!!");
 });
