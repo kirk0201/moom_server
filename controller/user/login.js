@@ -30,6 +30,7 @@ module.exports = {
             console.log("==== 세션주는중 ====");
             console.log(sess.userid);
             console.log(result.dataValues.id);
+            res.status(200).send("로그인 성공");
           } else {
             res.status(400).send(`${result.type} 회원입니다`);
           }
