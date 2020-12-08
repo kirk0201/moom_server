@@ -5,9 +5,11 @@ const session = require("express-session");
 const userRouter = require("./routes/userRouter");
 const dataRouter = require("./routes/dataRouter");
 require("dotenv").config();
+const redis = require("redis");
+const redisStore = require("connect-redis")(session);
+
 const app = express();
 const port = 4000;
-
 
 app.use(cookieParser());
 app.use(express.json());
@@ -22,10 +24,12 @@ app.use(
   })
 );
 
+var client = redis.createClient(6379, "localhost");
 app.use(
   session({
+    store: new redisStore({ client: client, ttl: 200, logErrors: true }),
     secret: process.env.PJ_SECRET,
-    resave: true, // false
+    resave: false,
     saveUninitialized: true,
     cookie: {
       secure: true,
@@ -36,6 +40,15 @@ app.use(
     },
   })
 );
+
+// 기존 세션 입니다.
+/* app.use(
+  session({
+    secret: process.env.PJ_SECRET,
+    resave: false,
+    saveUninitialized: true,
+  })
+); */
 
 app.use("/data", dataRouter);
 app.use("/user", userRouter);
