@@ -8,10 +8,6 @@ require("dotenv").config();
 const app = express();
 const port = 4000;
 
-
-app.use(cookieParser());
-app.use(express.json());
-
 app.use(
   cors({
     // 허용하는 출처
@@ -36,6 +32,9 @@ app.use(
     },
   })
 );
+
+app.use(cookieParser());
+app.use(express.json());
 
 app.use("/data", dataRouter);
 app.use("/user", userRouter);
