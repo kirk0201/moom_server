@@ -11,7 +11,7 @@ module.exports = {
         defaults: {
           name: name,
           password: password,
-          type: "일반",
+          type: "normal",
           sex: sex,
         },
       })
