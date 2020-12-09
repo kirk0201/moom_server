@@ -1,5 +1,5 @@
 const axios = require("axios");
-const { user } = require("../../models");
+const { user, body_part } = require("../../models");
 module.exports = {
   get: async (req, res) => {
     const sess = req.session;
@@ -47,6 +47,34 @@ module.exports = {
     });
     // 생성되면 created가 true 찾으면 false가 됨
     if (created) {
+      body_part.create({
+        body_part: "body_fat",
+        user_id: userresult.dataValues.id,
+      });
+      body_part.create({
+        body_part: "weight",
+        user_id: userresult.dataValues.id,
+      });
+      body_part.create({
+        body_part: "shoulder",
+        user_id: userresult.dataValues.id,
+      });
+      body_part.create({
+        body_part: "chest",
+        user_id: userresult.dataValues.id,
+      });
+      body_part.create({
+        body_part: "waist",
+        user_id: userresult.dataValues.id,
+      });
+      body_part.create({
+        body_part: "hip",
+        user_id: userresult.dataValues.id,
+      });
+      body_part.create({
+        body_part: "thigh",
+        user_id: userresult.dataValues.id,
+      });
       sess.userid = userresult.dataValues.id;
     } else {
       if (userresult.dataValues.type === "github") {
