@@ -59,6 +59,6 @@ module.exports = {
       }
     }
     //리다이렉션
-    res.status(200).redirect("/");
+    res.status(200).redirect("https://m00m.ml/");
   },
 };
