@@ -26,7 +26,7 @@ app.use(
   cors({
     // 허용하는 출처
     origin: ["https://m00m.ml", "http://localhost:3000"],
-    //허용하는 요청 종류
+    // 허용하는 요청 종류
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
@@ -34,7 +34,7 @@ app.use(
 
 var client = redis.createClient(6379, "localhost");
 
-// 배포용 세션입니다
+// TODO:배포용 세션입니다
 app.use(
   session({
     store: new redisStore({ client: client, ttl: 200, logErrors: true }),
@@ -49,7 +49,7 @@ app.use(
       sameSite: "none",
     },
   })
-); */
+);
 
 
 // 로컬용 세션 입니다.
@@ -64,24 +64,30 @@ app.use(
 
 app.use("/data", dataRouter);
 app.use("/user", userRouter);
-//서버에 접근했을때 빌드된 클라이언트 정적 파일을 전송해줌
 
-// HTTPS-PROTOCAL (배포 용)
+// TODO:HTTPS-PROTOCAL (배포 용)
 // 로컬 환경 테스트시 모두 주석처리
+// HTTPS설정을 위한 인증서 옵션
+// 임의로 인증서 위치를 옮기거나 복사하지말고 원본 위치를 사용할것
 let sslOption = {
   ca: fs.readFileSync("/etc/letsencrypt/live/m00m.cf/fullchain.pem"),
   key: fs.readFileSync("/etc/letsencrypt/live/m00m.cf/privkey.pem"),
   cert: fs.readFileSync("/etc/letsencrypt/live/m00m.cf/cert.pem"),
 };
+//<---- 서버 생성 express의 app.listen()과 같은 로직이다 공식문서에 나와있으니 참고   ---->
 // http는 참고용으로 남겨둠 배포, 로컬에서 주석처리할것
 // http.createServer(app).listen(80);
-https.createServer(sslOption, app).listen(443);
+
+// HTTPS는 인증서가 발급된 상태에서만 만들수 있기 때문에 해당 옵션을 추가해야함 
+https.createServer(sslOption, app).listen(port);
 // ------------------------------------------------------------------------
 app.get("/", (req, res) => {
   res.status(200).send("Connect Server!!");
 });
-app.listen(port, () => {
-  console.log(`Success!! Connect in PORT ${port}`);
-});
+
+// TODO:배포 환경에서 삭제
+// app.listen(port, () => {
+//   console.log(`Success!! Connect in PORT ${port}`);
+// });
 
 module.exports = app;
