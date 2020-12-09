@@ -24,7 +24,7 @@ app.use(
   })
 );
 
-var client = redis.createClient(6379, "localhost");
+/* var client = redis.createClient(6379, "localhost");
 app.use(
   session({
     store: new redisStore({ client: client, ttl: 200, logErrors: true }),
@@ -39,16 +39,16 @@ app.use(
       sameSite: "none",
     },
   })
-);
+); */
 
 // 기존 세션 입니다.
-/* app.use(
+app.use(
   session({
     secret: process.env.PJ_SECRET,
     resave: false,
     saveUninitialized: true,
   })
-); */
+);
 
 app.use("/data", dataRouter);
 app.use("/user", userRouter);
