@@ -27,9 +27,9 @@ module.exports = {
               res.status(400).send("비밀번호가 일치하지 않습니다");
             }
             sess.userid = result.id;
-            console.log("==== 세션주는중 ====");
+            console.log("==== Set Session_userid ====");
             console.log(sess.userid);
-            console.log(result.dataValues.id);
+            console.log("============================");
             res.status(200).send("로그인 성공");
           } else {
             res.status(400).send(`${result.type} 회원입니다`);
