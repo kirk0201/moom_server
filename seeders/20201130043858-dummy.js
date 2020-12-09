@@ -8,10 +8,10 @@ module.exports = {
       "users",
       [
         {
-          email: "applepen@gmail.com",
+          email: "1@1",
           name: "John Doe",
           password:
-            "04608017ca5879cf400d20c04a6cdc9e75ee54d629ad0bd6bcb86a423223146f35f51715bb40983f742125330cd0aa77fbf357d3022ab49eeda02282a24a3122",
+            "89025ee7a79cb494d63e23785ebcc161a4414bcc4b1191dcd88f43dab5086794bc91dad218c79fbb7b01f18725ca1d852bf87ba2673adef25b4a464d4ae96cb6",
           birth: "20000314",
           sex: "male",
           promise: "전지현이 될꺼야",
@@ -39,7 +39,7 @@ module.exports = {
     // 방금 만든 유저의 아이디값 가져오기
     const newuser = await user.findOne({
       where: {
-        email: "applepen@gmail.com",
+        email: "1@1",
       },
     });
 
