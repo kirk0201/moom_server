@@ -49,7 +49,8 @@ app.use(
       sameSite: "none",
     },
   })
-);
+); */
+
 
 // 로컬용 세션 입니다.
 // app.use(
@@ -59,6 +60,7 @@ app.use(
 //     saveUninitialized: true,
 //   })
 // );
+
 
 app.use("/data", dataRouter);
 app.use("/user", userRouter);
