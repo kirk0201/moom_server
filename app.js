@@ -85,7 +85,7 @@ app.get("/", (req, res) => {
   res.status(200).send("Connect Server!!");
 });
 
-// TODO:배포 환경에서 삭제
+// TODO:배포 환경에서 주석
 // app.listen(port, () => {
 //   console.log(`Success!! Connect in PORT ${port}`);
 // });
