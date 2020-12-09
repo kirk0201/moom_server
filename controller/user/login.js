@@ -21,8 +21,8 @@ module.exports = {
         if (result === null) {
           res.status(404).send("존재하지 않는 사용자 입니다");
         } else {
-          //해당사용자가 일반 타입의 사용자인지 확인후 비밀번호 확인
-          if (result.type === "일반") {
+          //해당사용자가 normal 타입의 사용자인지 확인후 비밀번호 확인
+          if (result.type === "normal") {
             if (result.password !== password) {
               res.status(400).send("비밀번호가 일치하지 않습니다");
             }
