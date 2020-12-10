@@ -85,7 +85,18 @@ module.exports = {
   put: async (req, res) => {
     const sess = req.session;
     const { part_name, new_name } = req.body;
-
+    const basic = [
+      "body_fat",
+      "chest",
+      "hip",
+      "shoulder",
+      "thigh",
+      "waist",
+      "weight",
+    ];
+    if (basic.indexOf(part_name) !== 0) {
+      res.status(404).send("기본 부위는 변경이 불가능 합니다.");
+    }
     if (sess.userid) {
       try {
         // body_part가 part_name과 동일한 데이터의 body_part를 new_name으로 바꿔주기
@@ -109,7 +120,18 @@ module.exports = {
   delete: async (req, res) => {
     const sess = req.session;
     const { part_name } = req.body;
-
+    const basic = [
+      "body_fat",
+      "chest",
+      "hip",
+      "shoulder",
+      "thigh",
+      "waist",
+      "weight",
+    ];
+    if (basic.indexOf(part_name) !== 0) {
+      res.status(404).send("기본 부위는 변경이 불가능 합니다.");
+    }
     if (sess.userid) {
       try {
         //where에 해당하는 데이터 삭제
