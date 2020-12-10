@@ -10,6 +10,7 @@ router.delete("/delete/:id", dataController.delete.delete);
 router.post("/custom", dataController.custom.post);
 router.put("/custom", dataController.custom.put);
 router.delete("/custom", dataController.custom.delete);
+router.get("/custom", dataController.custom.get);
 router.post("/goal", dataController.goal.post);
 router.get("/goal", dataController.goal.get);
 router.put("/goal", dataController.goal.put);
