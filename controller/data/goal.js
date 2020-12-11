@@ -3,7 +3,7 @@ const { body_part } = require("../../models");
 module.exports = {
   get: async (req, res) => {
     const sess = req.session;
-    const { part_name } = req.body;
+    let { part_name } = req.query;
     if (sess.userid) {
       try {
         //where에 조건 여러개 추가 가능
