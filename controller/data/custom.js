@@ -94,7 +94,7 @@ module.exports = {
       "waist",
       "weight",
     ];
-    if (basic.indexOf(part_name) !== 0) {
+    if (basic.indexOf(part_name) !== -1) {
       res.status(404).send("기본 부위는 변경이 불가능 합니다.");
     }
     if (sess.userid) {
@@ -129,9 +129,10 @@ module.exports = {
       "waist",
       "weight",
     ];
-    if (basic.indexOf(part_name) !== 0) {
+    if (basic.indexOf(part_name) !== -1) {
       res.status(404).send("기본 부위는 변경이 불가능 합니다.");
     }
+    console.log(part_name);
     if (sess.userid) {
       try {
         //where에 해당하는 데이터 삭제

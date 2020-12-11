@@ -28,7 +28,7 @@ app.use(
 );
 //------------------------ 여기서 부터 배포 전용 입니다. --------------------------- ctrl + shift + a
 // TODO: 배포용 포트
-const port = 443;
+/* const port = 443;
 
 var client = redis.createClient(6379, "localhost");
 
@@ -70,11 +70,11 @@ app.get("/", (req, res) => {
   res.status(200).send("Connect Server!!");
 });
 
-module.exports = app;
+module.exports = app; */
 
 //------------------------ 여기서 부터 로컬 전용 입니다. --------------------------- ctrl + shift + a
 
-/* const port = 4000;
+const port = 4000;
 
 app.use(
   session({
@@ -96,4 +96,4 @@ app.listen(port, () => {
   console.log(`Success!! Connect in PORT ${port}`);
 });
 
-module.exports = app; */
+module.exports = app;
