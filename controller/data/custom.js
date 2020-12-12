@@ -102,7 +102,7 @@ module.exports = {
         // body_part가 part_name과 동일한 데이터의 body_part를 new_name으로 바꿔주기
         const result = await body_part.update(
           { body_part: new_name },
-          { where: { body_part: part_name } }
+          { where: { body_part: part_name, user_id: sess.userid } }
         );
         if (result) {
           res.status(200).send("수정에 성공했습니다");
@@ -137,7 +137,7 @@ module.exports = {
       try {
         //where에 해당하는 데이터 삭제
         const result = await body_part.destroy({
-          where: { body_part: part_name },
+          where: { body_part: part_name, user_id: sess.userid },
         });
         // body_data에 foreign key로 연결된 데이터는 자동 삭제
         if (result) {
