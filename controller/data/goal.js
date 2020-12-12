@@ -1,4 +1,4 @@
-const { body_part } = require("../../models");
+const { body_part, body_data } = require("../../models");
 
 module.exports = {
   get: async (req, res) => {
@@ -13,8 +13,18 @@ module.exports = {
             body_part: part_name,
           },
         });
-        if (result) {
-          res.status(200).json(result.goal);
+        const recent = await body_data.findAll({
+          where: {
+            user_id: sess.userid,
+            body_part_id: result.id,
+          },
+        });
+        let recentvalue;
+        if (recent.length !== 0) {
+          recentvalue = recent[recent.length - 1].value;
+        }
+        if (result && recent) {
+          res.status(200).json({ goal: result.goal, recent: recentvalue });
         } else {
           //세션이 없을시
           res.status(400).send("잘못된 접근입니다");
