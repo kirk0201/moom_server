@@ -14,6 +14,7 @@ router.get("/custom", dataController.custom.get);
 router.post("/goal", dataController.goal.post);
 router.get("/goal", dataController.goal.get);
 router.put("/goal", dataController.goal.put);
-router.delete("/goal", dataController.goal.delete)
+router.delete("/goal", dataController.goal.delete);
+router.get("/allbasic", dataController.allbasic.get);
 
 module.exports = router;
