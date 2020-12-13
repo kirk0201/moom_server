@@ -14,16 +14,20 @@ module.exports = {
           },
         });
         //body_part에 id, 세션의 유저아이디, 날짜, value에 해당하는 데이터 생성
-        const result = await body_data.create({
-          schedule: new Date(),
-          value: value,
-          user_id: sess.userid,
-          body_part_id: body_part_id.id,
+        const [result, created] = await body_data.findOrCreate({
+          where: {
+            schedule: new Date(),
+            body_part_id: body_part_id.id,
+          },
+          defaults: {
+            value: value,
+            user_id: sess.userid,
+          },
         });
-        if (result) {
+        if (created) {
           res.status(200).send("생성 성공");
         } else {
-          res.status(400).send("잘못된 접근입니다");
+          res.status(400).send("이미 오늘 데이터를 업로드 하셨습니다.");
         }
       } catch (e) {
         //try에서 에러 발생시
