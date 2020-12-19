@@ -8,7 +8,7 @@ module.exports = {
       "users",
       [
         {
-          email: "1@1",
+          email: "1@1.com",
           name: "John Doe",
           password:
             "89025ee7a79cb494d63e23785ebcc161a4414bcc4b1191dcd88f43dab5086794bc91dad218c79fbb7b01f18725ca1d852bf87ba2673adef25b4a464d4ae96cb6",
@@ -39,7 +39,7 @@ module.exports = {
     // 방금 만든 유저의 아이디값 가져오기
     const newuser = await user.findOne({
       where: {
-        email: "1@1",
+        email: "1@1.com",
       },
     });
 
