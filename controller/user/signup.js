@@ -13,7 +13,6 @@ module.exports = {
           password: password,
           type: "normal",
           sex: sex,
-          profile: "https://i.ibb.co/wMjpgvr/profile.jpg",
         },
       })
       .then(async ([user, created]) => {
