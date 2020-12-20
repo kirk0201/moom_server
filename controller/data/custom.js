@@ -78,7 +78,7 @@ module.exports = {
       }
     } else {
       //세션이 없을때
-      res.status(400).send("잘못된 접근입니다");
+      res.status(404).send("세션이 없습니다");
     }
   },
 
@@ -95,7 +95,7 @@ module.exports = {
       "weight",
     ];
     if (basic.indexOf(part_name) !== -1) {
-      res.status(404).send("기본 부위는 변경이 불가능 합니다.");
+      res.status(400).send("기본 부위는 변경이 불가능 합니다");
     }
     if (sess.userid) {
       try {
@@ -113,7 +113,7 @@ module.exports = {
       }
     } else {
       //세션이 없을시
-      res.status(400).send("잘못된 접근입니다");
+      res.status(404).send("세션이 없습니다");
     }
   },
 
@@ -130,7 +130,7 @@ module.exports = {
       "weight",
     ];
     if (basic.indexOf(part_name) !== -1) {
-      res.status(404).send("기본 부위는 변경이 불가능 합니다.");
+      res.status(400).send("기본 부위는 삭제가 불가능 합니다");
     }
     console.log(part_name);
     if (sess.userid) {
@@ -151,7 +151,7 @@ module.exports = {
       }
     } else {
       //세션이 없을시
-      res.status(400).send("잘못된 접근입니다");
+      res.status(404).send("세션이 없습니다");
     }
   },
 };
