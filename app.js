@@ -2,15 +2,15 @@ const express = require("express");
 const http = require("http");
 const https = require("https");
 const fs = require("fs");
-
+const path = require('path');
 const cors = require("cors");
 const cookieParser = require("cookie-parser");
 const session = require("express-session");
 const userRouter = require("./routes/userRouter");
 const dataRouter = require("./routes/dataRouter");
 require("dotenv").config();
-const redis = require("redis");
-const redisStore = require("connect-redis")(session);
+// const redis = require("redis");
+// const redisStore = require("connect-redis")(session);
 
 const app = express();
 
@@ -35,7 +35,7 @@ var client = redis.createClient(6379, "localhost");
 // TODO:배포용 세션입니다
 app.use(
   session({
-    store: new redisStore({ client: client, ttl: 200, logErrors: true }),
+    // store: new redisStore({ client: client, ttl: 200, logErrors: true }),
     secret: process.env.PJ_SECRET,
     resave: false,
     saveUninitialized: true,
@@ -51,6 +51,7 @@ app.use(
 
 app.use("/data", dataRouter);
 app.use("/user", userRouter);
+app.use(express.static(path.join(__dirname, 'client/build')));
 
 // TODO:HTTPS-PROTOCAL (배포 용)
 // HTTPS설정을 위한 인증서 옵션
