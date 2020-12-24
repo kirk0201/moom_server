@@ -51,7 +51,7 @@ app.use(
 
 app.use("/data", dataRouter);
 app.use("/user", userRouter);
-app.use(express.static(path.join(__dirname, 'client/build')));
+// app.use(express.static(path.join(__dirname, 'client/build')));
 
 // TODO:HTTPS-PROTOCAL (배포 용)
 // HTTPS설정을 위한 인증서 옵션
