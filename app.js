@@ -20,7 +20,7 @@ app.use(express.json());
 app.use(
   cors({
     // 허용하는 출처
-    origin: ["https://m00m-1.herokuapp.com/", "http://localhost:3000"],
+    origin: ["https://m00m-1.herokuapp.com", "https://5fe4e7fb605fe1d43fa29de3--m00m.netlify.app"],
     // 허용하는 요청 종류
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
