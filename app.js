@@ -30,7 +30,7 @@ app.use(
 // TODO: 배포용 포트
 const port = process.env.PORT;
 
-var client = redis.createClient(6379, "localhost");
+// var client = redis.createClient(6379, "localhost");
 
 // TODO:배포용 세션입니다
 app.use(
