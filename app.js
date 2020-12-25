@@ -64,14 +64,7 @@ app.use("/user", userRouter);
 //<---- 서버 생성 express의 app.listen()과 같은 로직이다 공식문서에 나와있으니 참고   ---->
 // http는 참고용으로 남겨둠 배포, 로컬에서 주석처리할것
 http.createServer(app).listen(port);
-app.use(function(req, res, next) {
-  if (req.headers['x-forwarded-proto'] != 'https') {
-      res.redirect('https://' + req.headers.host + req.path);
-  }
-  else {
-      return next();
-  }
-});
+
 // HTTPS는 인증서가 발급된 상태에서만 만들수 있기 때문에 해당 옵션을 추가해야함
 // https.createServer(sslOption, app).listen(port);
 
