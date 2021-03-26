@@ -20,14 +20,14 @@ app.use(express.json());
 app.use(
   cors({
     // 허용하는 출처
-    origin: ["https://m00m.ml", "http://localhost:3000"],
+    origin: ["https://mo2m.tk", "http://localhost:3000", "https://www.mo2m.tk"],
     // 허용하는 요청 종류
     methods: ["GET", "POST", "PUT", "DELETE"],
     credentials: true,
   })
 );
-//------------------------ 여기서 부터 배포 전용 입니다. --------------------------- ctrl + shift + a
-// TODO: 배포용 포트
+// //------------------------ 여기서 부터 배포 전용 입니다. --------------------------- ctrl + shift + a
+// // TODO: 배포용 포트
 const port = 443;
 
 var client = redis.createClient(6379, "localhost");
@@ -56,9 +56,9 @@ app.use("/user", userRouter);
 // HTTPS설정을 위한 인증서 옵션
 // 임의로 인증서 위치를 옮기거나 복사하지말고 원본 위치를 사용할것
 let sslOption = {
-  ca: fs.readFileSync("/etc/letsencrypt/live/m00m.cf/fullchain.pem"),
-  key: fs.readFileSync("/etc/letsencrypt/live/m00m.cf/privkey.pem"),
-  cert: fs.readFileSync("/etc/letsencrypt/live/m00m.cf/cert.pem"),
+  ca: fs.readFileSync("/etc/letsencrypt/live/mo2m.ml/fullchain.pem"),
+  key: fs.readFileSync("/etc/letsencrypt/live/mo2m.ml/privkey.pem"),
+  cert: fs.readFileSync("/etc/letsencrypt/live/mo2m.ml/cert.pem"),
 };
 //<---- 서버 생성 express의 app.listen()과 같은 로직이다 공식문서에 나와있으니 참고   ---->
 // http는 참고용으로 남겨둠 배포, 로컬에서 주석처리할것
@@ -74,26 +74,26 @@ module.exports = app;
 
 //------------------------ 여기서 부터 로컬 전용 입니다. --------------------------- ctrl + shift + a
 
-/* const port = 4000;
+// const port = 4000;
 
-app.use(
-  session({
-    secret: process.env.PJ_SECRET,
-    resave: false,
-    saveUninitialized: true,
-  })
-);
+// app.use(
+//   session({
+//     secret: process.env.PJ_SECRET,
+//     resave: false,
+//     saveUninitialized: true,
+//   })
+// );
 
-app.use("/data", dataRouter);
-app.use("/user", userRouter);
+// app.use("/data", dataRouter);
+// app.use("/user", userRouter);
 
-app.get("/", (req, res) => {
-  res.status(200).send("Connect Server!!");
-});
+// app.get("/", (req, res) => {
+//   res.status(200).send("Connect Server!!");
+// });
 
-// TODO:배포 환경에서 주석
-app.listen(port, () => {
-  console.log(`Success!! Connect in PORT ${port}`);
-});
+// // TODO:배포 환경에서 주석
+// app.listen(port, () => {
+//   console.log(`Success!! Connect in PORT ${port}`);
+// });
 
-module.exports = app; */
+// module.exports = app;
